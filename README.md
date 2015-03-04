@@ -44,6 +44,13 @@ This quiz template is built using the [Foundation](http://foundation.zurb.com/) 
 ### Future Setup workflow
 - We are currently building out functionality that will allow you to auto generate your `quiz_data.json` file from a spreadsheet of questions and answers. 
 
+## Backwards Compatability
+- Chrome
+- Firefox
+- Safari
+- IE 9+
+- IE 8 (degrades gracefully into full width answers)
+
 
 ## Contents
 
