@@ -4,6 +4,16 @@ This is a codebase that will allow energy.gov users to quickly get started devel
 
 This quiz template is built using the [Foundation](http://foundation.zurb.com/) responsive framework. If you're looking for the original, pull down [the App_Frame repository](https://github.com/energyapps/app_frame).
 
+THIS IS UNDER DEVELOPMENT
+
+## Needs/Ideal Work flow
+
+	- NEED TO HAVE A way to deal with longer answers
+	- longer answers are almost aLWAYS the answer, so theyre dumb anyway
+	- need an excel doc/README that serves as documentation of how to collect questiosn and put them into the system.
+	- error logs in the script.
+
+
 ## Dependencies
 - Download and install [Jekyll](http://jekyllrb.com/)
 - [Foundation](http://foundation.zurb.com/) is already installed within this repository
@@ -79,12 +89,7 @@ This quiz template is built using the [Foundation](http://foundation.zurb.com/) 
 		- A static copy of the above as a fallback when the energy.gov links break.
 	* fonts.css
 		- a collection of some commonly used energy.gov fonts		
-
-## Needs/Ideal Work flow
-
-	- You will create your content in index.html, data.js, script.js, and style.css.
-	- These files will then be merged into the default.html using Jekyll pages.
-	- When you create your map on cms.doe.gov or stage.cms.doe.gov you will have to copy your js, css, and html over. Or, if you use the upload option, you will have to make sure that your index.html has the jekyll code removed.
+	
 
 ## Notes
 
