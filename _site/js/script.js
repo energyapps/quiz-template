@@ -100,7 +100,20 @@ $('.a-bg').click(function (e) {
 		//Do something when it gets to N questions
 		TotalAnswered +=1;
 		if (TotalAnswered === NumOfQuestions) {
-			$('#result-text').addClass('active');
+		// if (TotalAnswered === 1) {
+
+
+			if (TotalCorrect < 3) {
+				$('#okay').addClass('active');
+ 			} else if (TotalCorrect < 6) {
+				$('#good').addClass('active');
+			} else if (TotalCorrect < 9) {
+				$('#great').addClass('active');
+			} else {
+				$('#perfect').addClass('active');
+			};
+
+			// $('#result-text').addClass('active');
 		};
 	};
 });
