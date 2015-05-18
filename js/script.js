@@ -136,7 +136,7 @@ $('.a-bg').click(function (e) {
 		if (TotalAnswered === 1) {
 			var facelink = "";
 			var twitterlink = "http://twitter.com/home?status=";
-			var message = "I got X/X questions right on @energy's power plant quiz. Test your knowledge and see how you stack up http://bit.ly/PowerPlantsQuiz"
+			var message = "I got " + TotalCorrect + "/" + NumOfQuestions +" questions right on @energy's power plant quiz. Test your knowledge and see how you stack up http://bit.ly/PowerPlantsQuiz"
 			var uri = encodeURI(message);
 			console.log(uri)
 			console.log(twitterlink + uri)
