@@ -1,3 +1,5 @@
 
 .DS_store
 _site/
+js/data/json
+js/data/csv

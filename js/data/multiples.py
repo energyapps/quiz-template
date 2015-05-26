@@ -28,9 +28,12 @@ for c in ascii_uppercase:
 #Match the first tab with the wb1, starting at 2 to not add in the header line, 
 #which we'll switch in from a different file, for safer JSON outputs
 for x in range(2, 100):
-	for c in ascii_uppercase:
-		i = c + str(x)
-		ws1[i] = questions[i].value
+	o = "A" + str(x)
+	if questions[o].value != None:
+		for c in ascii_uppercase:
+			i = c + str(x)
+
+			ws1[i] = questions[i].value
 
 wb1.save("wb1.xlsx")
 
@@ -54,9 +57,10 @@ ws3 = wb3.active
 for c in ascii_uppercase:
 	ws3[c + "1"] = columnheads[c + "3"].value
 
-for x in range(2, 100):
+for x in range(3, 100):
 	for c in ascii_uppercase:
 		i = c + str(x)
-		ws3[i] = footerinfo[i].value
+		j = c + str(x - 1)
+		ws3[j] = footerinfo[i].value
 
 wb3.save("wb3.xlsx")
