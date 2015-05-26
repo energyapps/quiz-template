@@ -44,9 +44,11 @@ for c in ascii_uppercase:
 	ws2[c + "1"] = columnheads[c + "2"].value
 
 for x in range(2, 100):
-	for c in ascii_uppercase:
-		i = c + str(x)
-		ws2[i] = headerinfo[i].value
+	o = "A" + str(x)
+	if headerinfo[o].value != None:
+		for c in ascii_uppercase:
+			i = c + str(x)
+			ws2[i] = headerinfo[i].value
 
 wb2.save("wb2.xlsx")
 
@@ -58,9 +60,11 @@ for c in ascii_uppercase:
 	ws3[c + "1"] = columnheads[c + "3"].value
 
 for x in range(3, 100):
-	for c in ascii_uppercase:
-		i = c + str(x)
-		j = c + str(x - 1)
-		ws3[j] = footerinfo[i].value
+	o = "A" + str(x)
+	if footerinfo[o].value != None:
+		for c in ascii_uppercase:
+			i = c + str(x)
+			j = c + str(x - 1)
+			ws3[j] = footerinfo[i].value
 
 wb3.save("wb3.xlsx")

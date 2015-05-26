@@ -1,18 +1,4 @@
-#check to see if brew installed 
-echo "Welcome to My first installer package."
-echo 
-echo
-echo
-echo "You may need your admin password handy!"
-echo 
-echo
-echo
-echo 
-echo
-echo
-echo 
-echo
-echo
+
 
 EMPTY="" #this is our password.
 
@@ -47,7 +33,7 @@ done
 	
 
 #run the help?
-echo "Now we're going to test csvstat help menu. If you don't get an error, you're doing it right!"
-echo 
-echo
-csvstat -h
+# echo "Now we're going to test csvstat help menu. If you don't get an error, you're doing it right!"
+# echo 
+# echo
+# csvstat -h

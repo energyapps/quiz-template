@@ -24,3 +24,9 @@ cp data.json json/data-$TODAY-$NEW_UUID.json
 
 ### TEST TO MAKE SUREthat each has 4 answers, each is validated, that the data has the correct names.
 # make sure that each column is named correctlyu using csvstat
+
+csvjson footer.csv > footer.json
+csvjson header.csv > header.json
+
+#remove csv intermediates.
+rm footer.csv header.csv data.csv

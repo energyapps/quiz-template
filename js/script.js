@@ -3,11 +3,32 @@ $(document).ready(function(){    //moved to /server/fetcher-archiver.js
   $.ajax({
     url: "js/data/data.json",
     success: function(data){
-    	// console.log(data)
     	builditall(data)
     },
-    dataType: "json"
+    dataType: "json",
+    error: function(){console.log('error in data.json')}
   }); 
+
+
+	$.ajax({
+    url: "js/data/header.json",
+    success:function(header){
+  	  // console.log('success')
+	  },
+	  dataType: "json",
+	  error: function(){console.log('error in header.json')}	    
+	})
+
+	$.ajax({
+    url: "js/data/footer.json",
+    success: function(foot){
+    	// builditall(data)
+    	console.log(foot)
+    },
+    dataType: "json",
+    error: function(){console.log('error in footer.json')}
+  }); 
+
 });
 
 
