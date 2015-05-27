@@ -13,7 +13,7 @@ $(document).ready(function(){    //moved to /server/fetcher-archiver.js
 	$.ajax({
     url: "js/data/header.json",
     success:function(header){
-  	  // console.log('success')
+  	  buildheader(header)
 	  },
 	  dataType: "json",
 	  error: function(){console.log('error in header.json')}	    
@@ -21,15 +21,37 @@ $(document).ready(function(){    //moved to /server/fetcher-archiver.js
 
 	$.ajax({
     url: "js/data/footer.json",
-    success: function(foot){
-    	// builditall(data)
-    	console.log(foot)
+    success: function(footer){
+    	buildfooter(footer)
     },
     dataType: "json",
     error: function(){console.log('error in footer.json')}
   }); 
 
 });
+
+// populate the title and subtitle 
+function buildheader (header) {
+
+		var headercontent = '<div class="large-12 columnsDOE headline"><center><h2>' + header[0].title + 
+		'</h2></center></div><div class="large-12 columnsDOE header-color"><h3>' + header[0].subtitle + '</h3></div>'
+
+    $( "#header-container" ).append( $(headercontent) );
+
+    console.log(header[0].title)
+
+}
+
+// populate options for the bottom
+function buildfooter (footer) {
+	for (var i = 0; i < footer.length; i++) {
+
+		var footercontent = '<div class="large-12 columnsDOE header-color result-text" endpoint="' + footer[i].endrange + '" id="a' + (i + 1) + '">'+
+      '<h3>' + footer[i].scoretext + '</h3></div>'         
+
+    $( "#footer-container" ).append( $(footercontent) );
+	};
+}
 
 
 function builditall (data){
@@ -167,32 +189,40 @@ function builditall (data){
 
 			//Do something when it gets to N questions
 			TotalAnswered +=1;
-			if (TotalAnswered === 1) {
+			if (TotalAnswered === NumOfQuestions) {
 				var facelink = "";
 				var twitterlink = "http://twitter.com/home?status=";
 				var message = "I got " + TotalCorrect + "/" + NumOfQuestions +" questions right on @energy's power plant quiz. Test your knowledge and see how you stack up http://bit.ly/PowerPlantsQuiz"
 				var uri = encodeURI(message);
-				console.log(uri)
-				console.log(twitterlink + uri)
+				// console.log(uri)
+				// console.log(twitterlink + uri)
 
 				// add in social buttons and scores text
 				$('#social-buttons').addClass('active')
 				$("#facebook-quiz a").attr("href", facelink)
 				$("#twitter-quiz a").attr("href", twitterlink + uri)
-			// if (TotalAnswered === 1) {
 
+// Loop through each correct answer bucket and create the if statemet to attach correct classes 
+				
+				$( "#footer-container" ).children('div').each(function(){
+				// $(".result-text").get().each(function(){
+					var endpoint = parseInt($(this).attr("endpoint"))
+					var endclass = this.id
+					// console.log(endclass)
 
-				if (TotalCorrect < 3) {
-					$('#okay').addClass('active');
-	 			} else if (TotalCorrect < 6) {
-					$('#good').addClass('active');
-				} else if (TotalCorrect < 9) {
-					$('#great').addClass('active');
-				} else {
-					$('#perfect').addClass('active');
-				};
+					// if (2 < 3) { console.log('yes')}
 
-				// $('#result-text').addClass('active');
+					if (TotalCorrect < endpoint) {
+						console.log("yes")
+						console.log(TotalCorrect)
+						console.log(endpoint)
+					// $('#a1').addClass('active');		
+						$('#' + endclass).addClass('active');	
+						
+						// if satisfied break out of each loop.
+						return false
+					} 
+				})
 			};
 		};
 	});
@@ -203,11 +233,12 @@ function builditall (data){
 
 	(function ($) { 
 		$(document).ready(function() { 
-			
+
 			// on load, display 0 out of N
 			$('#results').html("<h1>" + TotalCorrect + "/" + NumOfQuestions + "</h1>")
 		});
 	}(jQuery));  
+
 }
 
 
