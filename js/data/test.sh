@@ -11,3 +11,7 @@ if [ "$PASSWORD" == "$VALID_PASSWORD" ]; then
 else
 	echo "ACCESS DENIED!"
 fi
+
+# python test.py
+
+# mv foo.txt foo.html

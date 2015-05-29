@@ -1,3 +1,6 @@
+# echo "test"
+# echo $1
+
 #start by converting the xlsx to 3 multiple xlsx's
 python multiples.py
 

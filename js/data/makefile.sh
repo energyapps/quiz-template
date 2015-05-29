@@ -14,7 +14,6 @@ echo
 echo
 echo "first we're checking if you have Jekyll running"
 
-
 EMPTY="" #this is our password.
 JEK="$(which jekyll)"
 
@@ -43,10 +42,12 @@ fi
 ./installation.sh
 
 #Run Openpxyl and csvkit to get from a xlsx to a few csvs
-./makecsv.sh
+./makecsv.sh $1
 
 #Run csvkit to get the needed json out of csv on the other end. 
 ./makejson.sh
 
-#Run some script that places the new json in the script and reruns the JAUNT!
+#Run the script that places the new json in doms!!!
+python createdom.py
 
+#what to do now? Rearrange all the shiz and package it up into a zip/folder

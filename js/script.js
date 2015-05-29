@@ -37,9 +37,6 @@ function buildheader (header) {
 		'</h2></center></div><div class="large-12 columnsDOE header-color"><h3>' + header[0].subtitle + '</h3></div>'
 
     $( "#header-container" ).append( $(headercontent) );
-
-    console.log(header[0].title)
-
 }
 
 // populate options for the bottom
@@ -208,14 +205,9 @@ function builditall (data){
 				// $(".result-text").get().each(function(){
 					var endpoint = parseInt($(this).attr("endpoint"))
 					var endclass = this.id
-					// console.log(endclass)
-
-					// if (2 < 3) { console.log('yes')}
 
 					if (TotalCorrect < endpoint) {
-						console.log("yes")
-						console.log(TotalCorrect)
-						console.log(endpoint)
+
 					// $('#a1').addClass('active');		
 						$('#' + endclass).addClass('active');	
 						
@@ -237,8 +229,9 @@ function builditall (data){
 			// on load, display 0 out of N
 			$('#results').html("<h1>" + TotalCorrect + "/" + NumOfQuestions + "</h1>")
 		});
+
+		fart = $("#master_container").html()
+		console.log(fart)
 	}(jQuery));  
 
 }
-
-

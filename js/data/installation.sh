@@ -1,5 +1,3 @@
-
-
 EMPTY="" #this is our password.
 
 #loop through arbitrary number of 
