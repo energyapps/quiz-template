@@ -1,33 +1,5 @@
 
 $(document).ready(function(){    //moved to /server/fetcher-archiver.js 
- //  $.ajax({
- //    url: "js/data/data.json",
- //    success: function(data){
- //    	// builditall(data)
- //    },
- //    dataType: "json",
- //    error: function(){console.log('error in data.json')}
- //  }); 
-
-
-	// $.ajax({
- //    url: "js/data/header.json",
- //    success:function(header){
- //  	  // buildheader(header)
-	//   },
-	//   dataType: "json",
-	//   error: function(){console.log('error in header.json')}	    
-	// })
-
-	// $.ajax({
- //    url: "js/data/footer.json",
- //    success: function(footer){
- //    	// buildfooter(footer)
- //    },
- //    dataType: "json",
- //    error: function(){console.log('error in footer.json')}
- //  }); 
-
 	makeitwork();
 });
 
@@ -79,8 +51,6 @@ function makeitwork (){
 				var twitterlink = "http://twitter.com/home?status=";
 				var message = "I got " + TotalCorrect + "/" + NumOfQuestions +" questions right on @energy's power plant quiz. Test your knowledge and see how you stack up http://bit.ly/PowerPlantsQuiz"
 				var uri = encodeURI(message);
-				// console.log(uri)
-				// console.log(twitterlink + uri)
 
 				// add in social buttons and scores text
 				$('#social-buttons').addClass('active')
@@ -117,9 +87,6 @@ function makeitwork (){
 			// on load, display 0 out of N
 			$('#results').html("<h1>" + TotalCorrect + "/" + NumOfQuestions + "</h1>")
 		});
-
-		// fart = $("#master_container").html()
-
 	}(jQuery));  
 
 }

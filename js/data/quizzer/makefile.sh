@@ -39,17 +39,17 @@ else
 fi
 
 #Install csvkit stuff
-./installation.sh
+./assets/scripts/installation.sh
 
 #Run Openpxyl and csvkit to get from a xlsx to a few csvs
-./makecsv.sh $1
+./assets/scripts/makecsv.sh $1
 
 #Run csvkit to get the needed json out of csv on the other end. 
-./makejson.sh
+./assets/scripts/makejson.sh
 
 #Run the script that places the new json in doms!!!
-python createdom.py
+python assets/scripts/createdom.py
 
 #what to do now? Rearrange all the shiz and package it up into a zip/folder
-# ./moveitems.sh
-
+zip -r quiz.zip assets/quiz/
+mv data.xlsx assets/data.xlsx
