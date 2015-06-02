@@ -2,12 +2,12 @@
 import json
 from random import shuffle
 
-headerjson = open('assets/header.json')
+headerjson = open('assets/json/header.json')
 header = json.load(headerjson)
 header2 = header[0]
-footerjson = open('assets/footer.json')
+footerjson = open('assets/json/footer.json')
 footer = json.load(footerjson)
-datajson = open('assets/data.json')
+datajson = open('assets/json/data.json')
 data = json.load(datajson)
 
 size = [30,65,95,125];

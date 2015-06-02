@@ -13,23 +13,25 @@ Their are several dependencies for this script to execute on your machine. All o
 - Easy Install (if you don't have pip)
 
 ## Instructions
-	1. Prepare your xlsx file. You can download the template [here](), but its already in your home directory. 
-		- Beware of special characters.
-		- Load your images into the cms and add those paths to the excel sheet, such as `http://energy.gov/sites/prod/files/image3grid.jpg`
-		- Don't forget to update the header and footer information
-		- links must be hardcoded in HTML, see below for more info.
-	2. Copy the folder and place it in your Documents folder
-	3. Change the name of your folder to your project name
-	4. Copy your xlsx file into this folder
-	5. Open up terminal found in Applications/Utilities
-	6. Navigate to this folder in terminal by typing the following command: `cd /Users/YOURNAME/Documents/YOURPROJECTNAME`
-	7. Type `./makefile.sh YOURFILE.xlsx`
-	8. Unzip folder
-	9. Inside the folder, open up preview.html to preview your quiz
-	10. Add each file to the DOE cms: Add Content > Map 
-		- Add markup.html to MARKUP
-		- Add compiled.js to CUSTOM JS
-		- Add compiled.css to CUSTOM CSS
+1. Prepare your xlsx file. You can download the template [here](), but its already in your home directory. 
+	- Beware of special characters.
+	- Load your images into the cms and add those paths to the excel sheet, such as `http://energy.gov/sites/prod/files/image3grid.jpg`
+	- Don't forget to update the header and footer information
+	- links must be hardcoded in HTML, see below for more info.
+2. Copy the folder and place it in your Documents folder
+3. Change the name of your folder to your project name
+4. Copy your xlsx file into this folder
+5. Open up terminal found in Applications/Utilities
+6. Navigate to this folder in terminal by typing the following command: `cd /Users/YOURNAME/Documents/YOURPROJECTNAME`
+7. Type `./makefile.sh YOURFILE.xlsx`. If there are no errors, this will create:
+	- quiz.zip in your home directory 
+	- a backup of the csv and json of the data in assets/json and assets/csv respectively. Each has a special character idetnifyer.
+8. Unzip quiz.zip folder
+9. Inside the folder, open up preview.html to preview your quiz and correct and errors and rerun the script (it will overwright)
+10. Add each file to the DOE cms: Add Content > Map 
+	- Add markup.html to MARKUP
+	- Add compiled.js to CUSTOM JS
+	- Add compiled.css to CUSTOM CSS
 
 ## Best Practices/Beware!!!
 
@@ -41,7 +43,10 @@ Their are several dependencies for this script to execute on your machine. All o
 
 ### BEWARE
 - If you want links and special characters you'll have to learn about [links](http://www.w3schools.com/html/html_links.asp), [special characters](https://www.utexas.edu/learn/html/spchar.html), and [spans](http://www.w3schools.com/tags/tag_span.asp) in [HTML](http://www.codecademy.com/en/tracks/web).
+- If you rerun the script it will overwrite all of your information, but there is a log of the data you used stored in assets/xlsx.
+- Each question needs 4 answers
 - Beware, I set up a .gitignore so that csvs and jsons are not added to the repo.
+
 
 ### CSS Classes to use 
 If you want to have a section of green text in the title as in the example, use the following `<span class="green-text">HIGHLIGHTED TEXT</span>`
@@ -50,3 +55,6 @@ If you want to have a section of green text in the title as in the example, use 
 - Seperate out installer into a new script
 - Validate xlsx entries and ensure that unicode errors aren't present, i.e. looking out for special characters and rejecting or correcting if possible. 
 - Social Sharing score information on facebook and twitter
+- Make it automatically okay with 2 answers
+- Make it throw an error if there's not 2 or 4 answers. 
+- ability to run script from json or csv stage
