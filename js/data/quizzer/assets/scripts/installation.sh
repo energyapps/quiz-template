@@ -1,11 +1,11 @@
-EMPTY="" #this is our password.
+EMPTY="" #this is empty.
 
-#loop through arbitrary number of 
+#loop through until csvstat is there
 for (( i = 0; i < 10; i++ )); do
 	CSVSTAT="$(which csvstat)"
 	if [ "$CSVSTAT" != "$EMPTY" ]; then
 		echo "You have csvstat!"
-		echo "Ok, let's get started!" 
+		echo "Installation complete" 
 		break
 	else
 		echo "You don't have csvstat!"
@@ -23,7 +23,7 @@ for (( i = 0; i < 10; i++ )); do
 				echo "You have easy_install, so we're going to update pip!"
 				sudo easy_install pip
 			else
-				echo "You don't have easy_install, and I need you to figure out how to download that!!! Google it. Sorry! Then run this again."				
+				echo "You don't have easy_install, and I need you to figure out how to install that!!! Google it. Sorry! Then run this again."				
 			fi
 		fi
 	fi

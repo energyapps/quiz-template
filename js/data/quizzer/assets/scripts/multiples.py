@@ -1,8 +1,13 @@
 from openpyxl import Workbook
 from openpyxl import load_workbook
 from string import ascii_uppercase
+import sys
 
-data = load_workbook('data.xlsx')
+# print 'Number of arguments:', len(sys.argv), 'arguments.'
+# print 'Argument List:', str(sys.argv)
+
+# data = load_workbook('data.xlsx')
+data = load_workbook(sys.argv[1])
 headlines = load_workbook('assets/headlines.xlsx')
 
 columnheads = headlines['Sheet1']

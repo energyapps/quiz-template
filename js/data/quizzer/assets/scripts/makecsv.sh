@@ -1,8 +1,5 @@
-# echo "test"
-# echo $1
-
 #start by converting the xlsx to 3 multiple xlsx's
-python assets/scripts/multiples.py
+python assets/scripts/multiples.py $1
 
 #convert these three xlsx's to csv
 in2csv assets/wb1.xlsx > assets/data.csv
