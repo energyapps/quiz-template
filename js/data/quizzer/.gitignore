@@ -8,3 +8,4 @@ assets/footer.json
 assets/header.json
 assets/xlsx/
 *.zip
+~$template.xlsx
