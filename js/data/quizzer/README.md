@@ -13,7 +13,7 @@ Their are several dependencies for this script to execute on your machine. All o
 - Easy Install (if you don't have pip)
 
 ## Instructions
-1. Prepare your xlsx file. You can download the template [here](), but its already in your home directory. 
+1. Prepare your xlsx file. You can download the template [here](https://github.com/energyapps/quiz-template/raw/gh-pages/js/data/quizzer/template.xlsx), but its already in your home directory. 
 	- Beware of special characters.
 	- Load your images into the cms and add those paths to the excel sheet, such as `http://energy.gov/sites/prod/files/image3grid.jpg`
 	- Don't forget to update the header and footer information
