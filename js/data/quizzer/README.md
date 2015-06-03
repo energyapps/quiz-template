@@ -3,7 +3,10 @@ The Energy.gov quiz generator is a simple script that runs on your computer, and
 
 
 ## Installation
-Their are several dependencies for this script to execute on your machine. All of these ought to load/install on your first run of the script, so you shouldn't have to do anything other than to add this folder in your Documents folder. You may need your admin password handy in order to proceed. If the installation doesn't work, contact me!
+Their are several dependencies for this script to execute on your machine. You may need your admin password handy in order to proceed. If the installation doesn't work, contact me!
+
+1. In the quizzer directory, right click on the `installation.sh` file and select Open With > Terminal.app
+2. Process should run and not through errors. 
 
 ### Dependencies 
 - [csvstat](https://csvkit.readthedocs.org/en/0.9.1/)
@@ -18,15 +21,17 @@ Their are several dependencies for this script to execute on your machine. All o
 	- Load your images into the cms and add those paths to the excel sheet, such as `http://energy.gov/sites/prod/files/image3grid.jpg`
 	- Don't forget to update the header and footer information
 	- links must be hardcoded in HTML, see below for more info.
-2. Copy the folder and place it in your Documents folder
+2. Copy the quizzer folder and place it in your Documents folder
 3. Change the name of your folder to your project name
+	- Don't use any spaces or special characters in your folder and file names. 	
 4. Copy your xlsx file into this folder
-5. Open up terminal found in Applications/Utilities
-6. Navigate to this folder in terminal by typing the following command: `cd /Users/YOURNAME/Documents/YOURPROJECTNAME`
-7. Type `./makefile.sh YOURFILE.xlsx`. If there are no errors, this will create:
+	- If there is more than one xlsx file in the quizzer home directory when you run the script, the script will ONLY run on the first xlsx file.
+5. In the quizzer directory, right click on the `makefile.sh` file and select Open With > Terminal.app. Hit Okay, when prompted.
+6. Follow the directions as prompted in the terminal.
+7. If it completes successfully, you will have:
 	- quiz.zip in your home directory 
-	- a backup of the csv and json of the data in assets/json and assets/csv respectively. Each has a special character idetnifyer.
-8. Unzip quiz.zip folder
+	- a backup of the xlsx in assets/xlsx. Each has a special character identifier.
+8. Unzip your quiz.zip folder
 9. Inside the folder, open up preview.html to preview your quiz and correct and errors and rerun the script (it will overwright)
 10. Add each file to the DOE cms: Add Content > Map 
 	- Add markup.html to MARKUP
@@ -37,6 +42,7 @@ Their are several dependencies for this script to execute on your machine. All o
 
 ### Best Practices
 - Avoid special characters such as ellipses, emdashes, quotation marks, etc. This will likely cause the script to fail. If excel is automatically causing this to happen, edit your cells to display at plain text. 
+- NO SPACES IN EXCEL FILE OR FOLDER NAMES!!!
 - Quiz questions aren't required to have images or context info at the end. 
 - The quiz can have as many questions as you want, but we recommend under 20.
 - The quiz can have as many classifications (footer info) as you wish, but we recommend 3 to 5. Links must be hardcoded (see below)

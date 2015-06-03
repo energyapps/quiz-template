@@ -1,20 +1,38 @@
+DIR="$(dirname "$0")"
+cd $DIR
+echo "Script running in the directory $DIR"
+
+
 EMPTY="" #this is our password.
 
-TYPE="$(echo $1 | rev | cut -c1-4 | rev)"
+# Run the script for the first xlsx that is not template
+for i in `find *.xlsx`
+do
+    TYPE="$(echo $i | rev | cut -c1-13 | rev)"
+    if [ "$TYPE" != "template.xlsx" ]; then    	    	
+    	TYPE=$i
+    	echo
+    	echo
+    	echo "Quiz will be generated on $TYPE"
+    	echo
+    	echo
+    	break
+    	#break out of loop and only run on the first xlsx alphabetically
+    fi
+done
 
-
-#before we do anything, we make sure that there is a xlsx argument after the shell call
-if [ "$1" == "$EMPTY" ]; then
-	echo "You forgot to include the name of your xlsx file"
-	exit
-elif [ "$TYPE" != "xlsx" ]; then	
-	echo $TYPE
-	echo "You didn't include the correct type of file. Please use a .xlsx file"
-	exit
-fi
+# #before we do anything, we make sure that there is a xlsx argument after the shell call
+# if [ "$1" == "$EMPTY" ]; then
+# 	echo "You forgot to include the name of your xlsx file"
+# 	exit
+# elif [ "$TYPE" != "xlsx" ]; then	
+# 	echo $TYPE
+# 	echo "You didn't include the correct type of file. Please use a .xlsx file"
+# 	exit
+# fi
 
 #check to see if brew installed 
-echo "Welcome to the energy.gov quiz installer and generator."
+echo "Welcome to the energy.gov quiz generator."
 echo 
 echo
 echo
@@ -55,7 +73,7 @@ else
 fi
 
 #Install csvkit stuff
-./assets/scripts/installation.sh
+# ./assets/scripts/installation.sh
 
 #Make the date a variable
 TODAY=$(date +%y-%m-%d)
@@ -65,8 +83,10 @@ echo "Today's Date is $TODAY"
 NEW_UUID=$(cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w 6 | head -n 1)
 echo "This random ID is $NEW_UUID"
 
+pwd
+
 #Run Openpxyl and csvkit to get from a xlsx to a few csvs, use the CSV name 
-./assets/scripts/makecsv.sh $1 $TODAY $NEW_UUID
+./assets/scripts/makecsv.sh $TYPE $TODAY $NEW_UUID
 
 #Run csvkit to get the needed json out of csv on the other end. 
 ./assets/scripts/makejson.sh
@@ -82,5 +102,3 @@ cd ..
 echo
 echo "Success! You may now unzip your quiz.zip files and load them into the CMS"
 echo
-
-# mv data.xlsx assets/data.xlsx
