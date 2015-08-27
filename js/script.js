@@ -186,10 +186,13 @@ function builditall (data){
 
 			//Do something when it gets to N questions
 			TotalAnswered +=1;
+			// if (TotalAnswered === 1) {
 			if (TotalAnswered === NumOfQuestions) {
 				var facelink = "";
 				var twitterlink = "http://twitter.com/home?status=";
-				var message = "I got " + TotalCorrect + "/" + NumOfQuestions +" questions right on @energy's power plant quiz. Test your knowledge and see how you stack up http://bit.ly/PowerPlantsQuiz"
+				// This will call from the JSON, a short link as specified by the XLSX and preserved through the python script
+				var shorty = "http://bit.ly/PowerPlantsQuiz";
+				var message = "I got " + TotalCorrect + "/" + NumOfQuestions +" questions right on @energy's power plant quiz. Test your knowledge and see how you stack up " + shorty				
 				var uri = encodeURI(message);
 				// console.log(uri)
 				// console.log(twitterlink + uri)
