@@ -64,6 +64,17 @@ function builditall (data){
 		return o;
 	};
 
+// Create progress Bar
+	(function ($) { 
+		$(document).ready(function() { 
+			for (var i = 0; i < NumOfQuestions; i++) {
+				// If there's a way to push directly to the style, that would be better				
+					var bar ="<div style='width:" + (100/NumOfQuestions) + "%' class='prog' id='prog"+ (i) +"'></div>"									
+				$( "#progress" ).append( $(bar) );				
+			};
+		});
+	}(jQuery));  
+
 	// define how many characters = a line break!!! so that side by side columns have the same size
 	var size = [30,65,95,125];
 
@@ -155,7 +166,7 @@ function builditall (data){
 	// when index of all indexes equals total number of questions  
 
 	for (var k = 0; k < NumOfQuestions; k++) {
-		QuestionIndex.push(0);
+		QuestionIndex.push(0);		
 	};
 
 	(function ($) { 
@@ -163,26 +174,33 @@ function builditall (data){
 	$('.a-bg').click(function (e) {
 		e.preventDefault();
 		var current_q = $(this).attr("data-id")
+		var barClass;
 
 		var qn = (parseInt(current_q)  + 1);
 
 		if (QuestionIndex[current_q] === 0) {
 			//should be first click
 			$(this).addClass('active');
+			console.log(this)
 			QuestionIndex[current_q]+=1;
 
 			if ($(this).hasClass('correct')) {
 				TotalCorrect+=1;
+				barClass = "correct"
 			} else {
 				$(".correct.q" + qn).addClass('inactive');
+				barClass = "wrong"
 			};
 			
 			// Results go up one number
 			$('#results').html("<h1>" + TotalCorrect + "/" + NumOfQuestions + "</h1>")
 
 			var cntx = '#c' + current_q;
+			var bar = '#prog' + current_q;
+			console.log(current_q)
 
 			$(cntx).addClass('active');
+			$(bar).addClass(barClass);
 
 			//Do something when it gets to N questions
 			TotalAnswered +=1;
@@ -221,17 +239,14 @@ function builditall (data){
 	}(jQuery));  
 
 
-	// on each click of button, change total correct/incorrect number....use that as a trigger
 
 	(function ($) { 
 		$(document).ready(function() { 
-
 			// on load, display 0 out of N
 			$('#results').html("<h1>" + TotalCorrect + "/" + NumOfQuestions + "</h1>")
 		});
 
-		fart = $("#master_container").html()
-		console.log(fart)
+		// fart = $("#master_container").html()
+		// console.log(fart)
 	}(jQuery));  
-
-}
+ } 
