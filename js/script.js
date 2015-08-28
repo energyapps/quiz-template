@@ -69,7 +69,7 @@ function builditall (data){
 		$(document).ready(function() { 
 			for (var i = 0; i < NumOfQuestions; i++) {
 				// If there's a way to push directly to the style, that would be better				
-					var bar ="<div style='width:" + (100/NumOfQuestions) + "%' class='prog' id='prog"+ (i) +"'></div>"									
+					var bar ="<div style='width:" + (100/NumOfQuestions) + "%' class='prog' id='prog"+ (i) +"' data-id='" + i +"'></div>"									
 				$( "#progress" ).append( $(bar) );				
 			};
 		});
@@ -134,7 +134,7 @@ function builditall (data){
 				'</p></div></div>';
 			};
 		
-		var content2 = '<div data-id="' + i + '" id="question' + (i+1) + '" class="question-individual"><div class="question subheadline"><p>' +
+		var content2 = '<div data-id="' + i + '" id="question' + (i) + '" class="question-individual"><div class="question subheadline"><p>' +
 		(i + 1) +
 		'. ' +
 		data[i].question +
@@ -181,7 +181,6 @@ function builditall (data){
 		if (QuestionIndex[current_q] === 0) {
 			//should be first click
 			$(this).addClass('active');
-			console.log(this)
 			QuestionIndex[current_q]+=1;
 
 			if ($(this).hasClass('correct')) {
@@ -197,7 +196,6 @@ function builditall (data){
 
 			var cntx = '#c' + current_q;
 			var bar = '#prog' + current_q;
-			console.log(current_q)
 
 			$(cntx).addClass('active');
 			$(bar).addClass(barClass);
@@ -238,8 +236,19 @@ function builditall (data){
 	});
 	}(jQuery));  
 
+//Click the progress bar to scroll to the question
+	(function ($) { 
+		$('.prog').click(function (e) {			
+			var currentBar = $(this).attr("data-id")		
+			var ques = '#question' + (currentBar);
+			// $('#results').scrollView();
+			$(ques).scrollView();
+
+		});
+	}(jQuery));  
 
 
+//Initial Load
 	(function ($) { 
 		$(document).ready(function() { 
 			// on load, display 0 out of N
@@ -249,4 +258,22 @@ function builditall (data){
 		// fart = $("#master_container").html()
 		// console.log(fart)
 	}(jQuery));  
- } 
+
+	(function ($) { 
+	  $(document).ready(function() { 
+	    $.fn.scrollView = function () {
+	      return this.each(function () {	      	
+	      	var whereto = $(this).offset().top - 20;
+	        $('html, body').animate({	        	
+	            scrollTop: whereto
+	        }, 1000);
+	      });
+	    }
+	  });  
+	}(jQuery));  
+
+
+// End of script
+} 
+
+
