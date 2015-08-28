@@ -1,4 +1,3 @@
-
 $(document).ready(function(){    //moved to /server/fetcher-archiver.js 
   $.ajax({
     url: "js/data/data.json",
@@ -269,8 +268,25 @@ function builditall (data){
 	        }, 1000);
 	      });
 	    }
+
+	    $(function() {	    	
+		  var a = function() {		  	
+		    var b = $(window).scrollTop();
+		    var d = $("#progress-anchor")[0].offsetTop;		    
+		    var c=$("#progress");		    
+		    if (b>d) {		    	
+		      c.css({position:"fixed",top:"0px"})
+		    } else {
+		      if (b<=d) {
+		        c.css({position:"relative",top:""})
+		      }
+		    }
+		  };
+		  $(window).scroll(a);a()
+		});
 	  });  
 	}(jQuery));  
+
 
 
 // End of script
