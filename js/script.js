@@ -1,4 +1,3 @@
-
 $(document).ready(function(){    //moved to /server/fetcher-archiver.js 
   $.ajax({
     url: "js/data/data.json",
@@ -64,6 +63,17 @@ function builditall (data){
 		return o;
 	};
 
+// Create progress Bar
+	(function ($) { 
+		$(document).ready(function() { 
+			for (var i = 0; i < NumOfQuestions; i++) {
+				// If there's a way to push directly to the style, that would be better				
+					var bar ="<div style='width:" + (100/NumOfQuestions) + "%' class='prog' id='prog"+ (i) +"' data-id='" + i +"'></div>"									
+				$( "#progress" ).append( $(bar) );				
+			};
+		});
+	}(jQuery));  
+
 	// define how many characters = a line break!!! so that side by side columns have the same size
 	var size = [30,65,95,125];
 
@@ -123,7 +133,7 @@ function builditall (data){
 				'</p></div></div>';
 			};
 		
-		var content2 = '<div data-id="' + i + '" id="question' + (i+1) + '" class="question-individual"><div class="question subheadline"><p>' +
+		var content2 = '<div data-id="' + i + '" id="question' + (i) + '" class="question-individual"><div class="question subheadline"><p>' +
 		(i + 1) +
 		'. ' +
 		data[i].question +
@@ -155,7 +165,7 @@ function builditall (data){
 	// when index of all indexes equals total number of questions  
 
 	for (var k = 0; k < NumOfQuestions; k++) {
-		QuestionIndex.push(0);
+		QuestionIndex.push(0);		
 	};
 
 	(function ($) { 
@@ -163,6 +173,7 @@ function builditall (data){
 	$('.a-bg').click(function (e) {
 		e.preventDefault();
 		var current_q = $(this).attr("data-id")
+		var barClass;
 
 		var qn = (parseInt(current_q)  + 1);
 
@@ -173,16 +184,20 @@ function builditall (data){
 
 			if ($(this).hasClass('correct')) {
 				TotalCorrect+=1;
+				barClass = "correct"
 			} else {
 				$(".correct.q" + qn).addClass('inactive');
+				barClass = "wrong"
 			};
 			
 			// Results go up one number
 			$('#results').html("<h1>" + TotalCorrect + "/" + NumOfQuestions + "</h1>")
 
 			var cntx = '#c' + current_q;
+			var bar = '#prog' + current_q;
 
 			$(cntx).addClass('active');
+			$(bar).addClass(barClass);
 
 			//Do something when it gets to N questions
 			TotalAnswered +=1;
@@ -220,18 +235,61 @@ function builditall (data){
 	});
 	}(jQuery));  
 
+//Click the progress bar to scroll to the question
+	(function ($) { 
+		$('.prog').click(function (e) {			
+			var currentBar = $(this).attr("data-id")		
+			var ques = '#question' + (currentBar);
+			// $('#results').scrollView();
+			$(ques).scrollView();
 
-	// on each click of button, change total correct/incorrect number....use that as a trigger
+		});
+	}(jQuery));  
 
+
+//Initial Load
 	(function ($) { 
 		$(document).ready(function() { 
-
 			// on load, display 0 out of N
 			$('#results').html("<h1>" + TotalCorrect + "/" + NumOfQuestions + "</h1>")
 		});
 
-		fart = $("#master_container").html()
-		console.log(fart)
+		// fart = $("#master_container").html()
+		// console.log(fart)
 	}(jQuery));  
 
-}
+	(function ($) { 
+	  $(document).ready(function() { 
+	    $.fn.scrollView = function () {
+	      return this.each(function () {	      	
+	      	var whereto = $(this).offset().top - 20;
+	        $('html, body').animate({	        	
+	            scrollTop: whereto
+	        }, 1000);
+	      });
+	    }
+
+	    $(function() {	    	
+		  var a = function() {		  	
+		    var b = $(window).scrollTop();
+		    var d = $("#progress-anchor")[0].offsetTop;		    
+		    var c=$("#progress");		    
+		    if (b>d) {		    	
+		      c.css({position:"fixed",top:"0px"})
+		    } else {
+		      if (b<=d) {
+		        c.css({position:"relative",top:""})
+		      }
+		    }
+		  };
+		  $(window).scroll(a);a()
+		});
+	  });  
+	}(jQuery));  
+
+
+
+// End of script
+} 
+
+
